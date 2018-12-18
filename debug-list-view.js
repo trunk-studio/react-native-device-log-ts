@@ -261,25 +261,11 @@ export default class Debug extends React.Component {
             <View style={styles.container}>
                 <View style={styles.toolBar}>
                     <TouchableOpacity
-                        style={styles.toolbarButton}
-                        onPress={this.onPauseButtonPressed.bind(this)}
-                    >
-                        <Text style={styles.toolbarButtonText}>
-                            {this.state.paused ? "Resume log" : "Pause log"}
-                        </Text>
-                    </TouchableOpacity>
-                    <TouchableOpacity
                         onPress={this.onCenterColumnPressed.bind(this)}
                         style={styles.centerColumn}
                     >
                         <Text style={styles.titleText}>{`${this.state.rows
                             .length} rows`}</Text>
-                    </TouchableOpacity>
-                    <TouchableOpacity
-                        style={styles.toolbarButton}
-                        onPress={this.onClearButtonPressed.bind(this)}
-                    >
-                        <Text style={styles.toolbarButtonText}>Clear log</Text>
                     </TouchableOpacity>
                 </View>
                 <View style={styles.listContainer}>
