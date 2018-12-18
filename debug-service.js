@@ -194,9 +194,8 @@ class DebugService {
         return this.emitDebugRowsChanged(rows);
     }
 
-    async getData() {
-        const data = await this.store.getRows();
-        return data;
+    getData() {
+        return this.logRows;
     }
 
     stopTimer(name) {
