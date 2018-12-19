@@ -194,6 +194,10 @@ class DebugService {
         return this.emitDebugRowsChanged(rows);
     }
 
+    getData() {
+        return this.logRows;
+    }
+
     stopTimer(name) {
         timers.stop(name);
         timers.remove(name);
