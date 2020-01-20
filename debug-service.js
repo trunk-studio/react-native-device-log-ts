@@ -1,4 +1,5 @@
-import { AsyncStorage, AppState, NetInfo } from "react-native";
+import { AsyncStorage, AppState } from "react-native";
+import NetInfo from "@react-native-community/netinfo";
 import moment from "moment";
 import InMemory from "./adapters/in-memory";
 import timers from "./timers";
@@ -42,15 +43,15 @@ class DebugService {
     }
 
     _handleConnectivityTypeChange(connectionInfo) {
-        let { type, effectiveType } = connectionInfo;
-        if (type === "none") {
+        let { type, isConnected } = connectionInfo;
+        if (type === "none" || !isConnected) {
             this.hasBeenDisconnected = true;
             this.seperator(`DISCONNECTED FROM INTERNET`);
         } else {
             const buildConnectionString = () => {
-                return `${type.toUpperCase()}${effectiveType === "unknown"
+                return `${type.toUpperCase()}${type !== "cellular"
                     ? ""
-                    : ` - ${effectiveType}`}`;
+                    : ` - ${type.cellularGeneration}`}`;
             };
             if (this.hasBeenDisconnected) {
                 this.seperator(
@@ -122,10 +123,9 @@ class DebugService {
             );
         }
         if (this.options.logConnection) {
-            NetInfo.addEventListener(
-                "connectionChange",
-                this._handleConnectivityTypeChange.bind(this)
-            );
+            NetInfo.addEventListener(state => {
+                this._handleConnectivityTypeChange(state).bind(this);
+            });
         }
         if (this.options.logRNErrors) {
             this.setupRNErrorLogging();
