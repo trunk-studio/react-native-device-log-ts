@@ -124,7 +124,7 @@ class DebugService {
         }
         if (this.options.logConnection) {
             NetInfo.addEventListener(state => {
-                this._handleConnectivityTypeChange(state).bind(this);
+                this._handleConnectivityTypeChange.bind(this, state);
             });
         }
         if (this.options.logRNErrors) {
