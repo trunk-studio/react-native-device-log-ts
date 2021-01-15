@@ -1,5 +1,5 @@
 {
-  "name": "react-native-device-log",
+  "name": "react-native-device-log-ts",
   "keywords": [
     "react-component",
     "react-native",
@@ -16,7 +16,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "Olof Dahlbom",
+  "author": "trunk-studio",
   "license": "MIT",
   "dependencies": {
     "@react-native-community/netinfo": "^5.3.3",
